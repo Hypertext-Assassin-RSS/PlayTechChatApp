@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -22,6 +23,12 @@
                         <Font name="System Bold" size="27.0" />
                      </font>
                   </Label>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="58.0" prefWidth="510.0" spacing="10.0" style="-fx-padding: 5;">
+                     <children>
+                        <FontAwesomeIconView glyphName="MINUS_CIRCLE" onMouseClicked="#minimize" size="20" />
+                        <FontAwesomeIconView glyphName="TIMES_CIRCLE" onMouseClicked="#close" size="20" />
+                     </children>
+                  </HBox>
                </children>
             </HBox>
          </top>

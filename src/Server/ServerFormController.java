@@ -2,8 +2,12 @@ package Server;
 
 import Login.LoginController;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -22,6 +26,19 @@ public class ServerFormController {
     String message = "";
 
     String replay = "";
+
+    @FXML
+    void close(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+
+    @FXML
+    void minimize(MouseEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setIconified(true);
+    }
 
 
     public void initialize() {
