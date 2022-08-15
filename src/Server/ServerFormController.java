@@ -1,14 +1,17 @@
 package Server;
 
-import Login.LoginController;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -16,6 +19,7 @@ import java.net.Socket;
 public class ServerFormController {
     public TextField txtServerMessage;
     public TextArea txtServerPane;
+    public HBox head;
     Socket socket =null;
 
 
@@ -26,6 +30,9 @@ public class ServerFormController {
     String message = "";
 
     String replay = "";
+
+
+
 
     @FXML
     void close(MouseEvent event) {
@@ -52,9 +59,17 @@ public class ServerFormController {
                 while (!socket.isClosed()){
                     //read received msg
                     receiveMsg = new DataInputStream(socket.getInputStream());
+
+
                     message = receiveMsg.readUTF();
                     txtServerPane.appendText("\nClient:" + message.trim() + "\n"); //add received msg to text area
                     System.out.println(message);
+
+
+                    byte[] bytes = new byte[4];
+                    receiveMsg.read(bytes);
+                    BufferedImage image = ImageIO.read(new ByteArrayInputStream(bytes));
+
                 }
 
 
@@ -72,4 +87,5 @@ public class ServerFormController {
         sendMsg.writeUTF(replay);
         txtServerMessage.setText("");
     }
+
 }

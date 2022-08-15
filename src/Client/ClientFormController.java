@@ -1,17 +1,19 @@
 package Client;
 
-import Login.LoginController;
-import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 
 public class ClientFormController {
     public TextField txtClientMessage;
@@ -26,6 +28,9 @@ public class ClientFormController {
 
     String replay = "";
 
+    String option = "text";
+
+    File file = null;
 
     @FXML
     void close(MouseEvent event) {
@@ -61,11 +66,37 @@ public class ClientFormController {
 
     }
 
-    public void sendOnAction(ActionEvent actionEvent) throws IOException {
+
+    @FXML
+    void openFileChooser(MouseEvent event) {
+        option = "file";
+        FileChooser fileChooser = new FileChooser();
+       file = fileChooser.showOpenDialog(new Stage());
+        if (file != null) {
+            txtClientMessage.appendText(file.getAbsolutePath() + " selected");
+        }
+    }
+
+    public void sendOnAction(ActionEvent actionEvent) throws IOException, InterruptedException {
         sendMsg  = new DataOutputStream(socket.getOutputStream());
-        replay = txtClientMessage.getText();
-        txtClientPane.appendText("\n\t\t\t\t\t\t\t\tMe :" + replay.trim()); //add replay to text area
-        sendMsg.writeUTF(replay);
-        txtClientMessage.setText("");
+        switch (option){
+            case "text":
+                replay = txtClientMessage.getText();
+                txtClientPane.appendText("\n\t\t\t\t\t\t\t\tMe :" + replay.trim()); //add replay to text area
+                sendMsg.writeUTF(replay);
+                txtClientMessage.setText("");
+                break;
+            case "file":
+                BufferedImage bufferedImage = ImageIO.read(file);
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                ImageIO.write(bufferedImage,"jpg",byteArrayOutputStream);
+                byte[] bytes = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
+                sendMsg.write(bytes);
+                sendMsg.write(byteArrayOutputStream.toByteArray());
+                Thread.sleep(120000);
+                break;
+        }
+
+
     }
 }
