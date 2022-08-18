@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="506.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.ClientController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <VBox prefHeight="140.0" prefWidth="745.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="745.0" spacing="10.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="70.0" prefWidth="308.0" spacing="10.0">
+                           <children>
+                              <Label text="User">
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="ua" prefHeight="25.0" prefWidth="177.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="19.0" prefWidth="428.0" spacing="10.0" style="-fx-padding: 5;">
+                           <children>
+                              <FontAwesomeIconView glyphName="MINUS_CIRCLE" onMouseClicked="#minimize" size="20" />
+                              <FontAwesomeIconView glyphName="TIMES_CIRCLE" onMouseClicked="#close" size="20" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0" spacing="25.0">
+                     <children>
+                        <JFXButton fx:id="clear" buttonType="RAISED" prefHeight="44.0" prefWidth="100.0" style="-fx-background-color: lightgreen; -fx-background-radius: 5;" text="CLEAR" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="disconnect" buttonType="RAISED" onAction="#disconnectFromServer" prefHeight="44.0" prefWidth="129.0" style="-fx-background-color: #2E5A18; -fx-background-radius: 5;" text="DISCONNECT" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="connect" buttonType="RAISED" onAction="#connectToServer" prefHeight="44.0" prefWidth="100.0" style="-fx-background-color: #DF00FF; -fx-background-radius: 5;" text="CONNECT" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <JFXButton fx:id="CU" buttonType="RAISED" prefHeight="44.0" prefWidth="121.0" style="-fx-background-color: #FC9D1D; -fx-background-radius: 5;" text="CLEAR USER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </JFXButton>
+                        <Label fx:id="status" alignment="CENTER" prefHeight="46.0" prefWidth="146.0" style="-fx-background-color: red; -fx-background-radius: 5; -fx-font-size: Roboto; -fx-font: sans-serif;" text="STATUS" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Calibri Bold" size="19.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </top>
+         <bottom>
+            <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="745.0" spacing="30.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="580.0" style="-fx-background-color: #BBABAB;">
+                     <children>
+                        <TextField fx:id="field" prefHeight="46.0" prefWidth="532.0" style="-fx-background-color: #BBABAB;">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <MaterialDesignIconView glyphName="CAMERA" onMouseClicked="#openFileChooser" size="25" />
+                     </children>
+                  </HBox>
+                  <JFXButton fx:id="send" buttonType="RAISED" onAction="#sendAction" prefHeight="44.0" prefWidth="100.0" style="-fx-background-color: blue; -fx-background-radius: 5; -fx-font-family: Roboto;" text="SEND" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fx:id="jScrollPane1" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <TextArea fx:id="area" prefHeight="301.0" prefWidth="742.0">
+                           <font>
+                              <Font name="Cambria Bold Italic" size="18.0" />
+                           </font></TextArea>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

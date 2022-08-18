@@ -22,7 +22,7 @@ public class ClientInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("ClientForm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Client.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
 
